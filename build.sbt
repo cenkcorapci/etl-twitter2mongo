@@ -26,13 +26,15 @@ libraryDependencies ++= {
   val akkaHttpV = "10.0.11"
   val scalaLoggingV = "3.7.2"
   val betterFilesV = "3.4.0"
-  val mongoV = "2.2.1"
+  val casbahV = "3.1.1"
+  val salatV = "1.11.2"
   val logbackV = "1.2.3"
   val logbackEncoderV = "4.11"
 
   Seq(
     "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpV,
-    "org.mongodb.scala" %% "mongo-scala-driver" % mongoV,
+    "org.mongodb" %% "casbah" % casbahV,
+    "com.github.salat" %% "salat" % salatV,
     "com.github.pathikrit" %% "better-files" % betterFilesV,
     "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingV,
     "ch.qos.logback" % "logback-core" % logbackV,

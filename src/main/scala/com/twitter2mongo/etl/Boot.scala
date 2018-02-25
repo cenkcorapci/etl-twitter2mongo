@@ -1,7 +1,8 @@
 package com.twitter2mongo.etl
 
+import akka.stream.OverflowStrategy
 import akka.stream.scaladsl.Sink
-import com.twitter2mongo.etl.service.DataSetReaderService
+import com.twitter2mongo.etl.service.{DataSetReaderService, MongoService}
 import com.typesafe.scalalogging.StrictLogging
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -9,12 +10,16 @@ import scala.util.{Failure, Success}
 
 object Boot extends App
   with DataSetReaderService
+  with MongoService
   with AppContext
   with StrictLogging {
 
+  override val mongoClient = defaultMongoClient
+
   val dataSetSource = createCombinedDatasetSource()
-  dataSetSource.map(_.tweet)
-    .map(t => logger.info(t))
+  dataSetSource
+    .buffer(256, OverflowStrategy.backpressure)
+    .map(insertTweet)
     .map(_ => 1)
     .runWith(Sink.fold(0)(_ + _))
     .onComplete {
