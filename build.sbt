@@ -25,7 +25,7 @@ scalacOptions := Seq(
 libraryDependencies ++= {
   val akkaHttpV = "10.0.11"
   val scalaLoggingV = "3.7.2"
-  val scalaCsvV = "1.3.5"
+  val betterFilesV = "3.4.0"
   val mongoV = "2.2.1"
   val logbackV = "1.2.3"
   val logbackEncoderV = "4.11"
@@ -33,7 +33,7 @@ libraryDependencies ++= {
   Seq(
     "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpV,
     "org.mongodb.scala" %% "mongo-scala-driver" % mongoV,
-    "com.github.tototoshi" %% "scala-csv" % scalaCsvV,
+    "com.github.pathikrit" %% "better-files" % betterFilesV,
     "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingV,
     "ch.qos.logback" % "logback-core" % logbackV,
     "ch.qos.logback" % "logback-classic" % logbackV,
