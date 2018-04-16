@@ -23,17 +23,4 @@ object Helpers {
     }
   }
 
-  implicit class ToMapOps[A](val a: A) extends AnyVal {
-
-    import shapeless._
-    import ops.record._
-
-    def toMap[L <: HList](implicit gen: LabelledGeneric.Aux[A, L], tmr: ToMap[L]): Map[String, Any] = {
-      val m: Map[tmr.Key, tmr.Value] = tmr(gen.to(a))
-      m.collect {
-        case (k: Symbol, v) => k.name -> v
-      }
-    }
-  }
-
 }

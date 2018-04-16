@@ -37,6 +37,14 @@ trait DataSetReaderService {
             userId <- Try(userIdText.toLong).toOption
             tweetId <- Try(tweetIdText.toLong).toOption
             userLoc <- userLocations.get(userId)
+              .map(_
+                .replaceAll("UT:", "")
+                .trim
+                .split(",")
+                .flatMap(n => Try(n.toFloat).toOption)
+                .reverse)
+              .filter(_.length == 2)
+              .map(coord => Location(coord))
           } yield Tweet(userId, tweetId, tweet, ts, userLoc)
       }
       .collect {

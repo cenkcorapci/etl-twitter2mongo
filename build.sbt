@@ -26,7 +26,7 @@ libraryDependencies ++= {
   val akkaHttpV = "10.0.11"
   val scalaLoggingV = "3.7.2"
   val betterFilesV = "3.4.0"
-  val shapelessV = "2.3.3"
+  val sprayV = "1.3.4"
   val casbahV = "3.1.1"
   val logbackV = "1.2.3"
   val logbackEncoderV = "4.11"
@@ -34,7 +34,7 @@ libraryDependencies ++= {
   Seq(
     "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpV,
     "org.mongodb" %% "casbah" % casbahV,
-    "com.chuusai" %% "shapeless" % shapelessV,
+    "io.spray" %% "spray-json" % sprayV,
     "com.github.pathikrit" %% "better-files" % betterFilesV,
     "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingV,
     "ch.qos.logback" % "logback-core" % logbackV,
